@@ -1,0 +1,26 @@
+VandalGMP upstream baseline
+
+GMP (GNU Multiple Precision Arithmetic Library):
+  Version: 6.3.0
+  Source kind: official release tarball (NOT a live git fork)
+  Archive: gmp-6.3.0.tar.xz
+  URL: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
+  SHA-256: a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898
+
+Reason for tarball import instead of a git fork:
+  GMP's official upstream repository is Mercurial only
+  (https://gmplib.org/repo/gmp/), and this environment has no Mercurial
+  tooling. Unofficial GMP git mirrors exist but are deliberately not used
+  here, to avoid depending on a distribution channel that is not the
+  official GMP release. Instead, the official GNU FTP release tarball was
+  downloaded, its SHA-256 checksum verified against the value above, and
+  its contents committed directly as this repository's source tree.
+
+  This means there is no `upstream` git remote for VandalGMP and no shared
+  commit history with GMP's own repository. Updating this fork to a newer
+  GMP release means re-downloading and re-importing that release's tarball
+  as a fresh commit, not `git fetch`-ing from an upstream remote.
+
+GMP is a build-time dependency of GDB (via VandalBinUtils), and of MPFR,
+MPC, and ISL, which are themselves GDB build dependencies. This baseline
+matches the version already pinned for the VandalSDK toolchain build.
